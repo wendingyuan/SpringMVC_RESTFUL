@@ -20,14 +20,18 @@
   	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
 	<!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
-	<bean  class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">   
-       
-		<!-- 这里是否忽略掉accept header，默认就是false -->
+	<bean  class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<!-- 方法1：使用扩展名 -->
+        <property name="favorPathExtension" value="true"/>
+        
+        <!-- 方法2：使用参数 -->
+        <property name="favorParameter" value="true"/>
+        
+		<!-- 方法3：使用http request header的Accept，默认就是false -->
 		<property name="ignoreAcceptHeader" value="true" />
     
    		<!-- 如果所有的mediaType都没匹配上，就会使用defaultContentType -->
-		<!-- <property name="defaultContentType" value="text/html" /> -->
-		<property name="defaultContentType" value="application/json" />
+		<property name="defaultContentType" value="text/html" />
 
 	   	<property name="mediaTypes">
 	    	<map>
